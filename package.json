@@ -1,4 +1,7 @@
 {
+  "name": "minilabtesting",
+  "version": "1.0.0",
+  "description": "A lightweight Mini Lab Testing for precise code validation. Ensure accuracy, streamline testing, and maintain reliability with this tool.",
   "dependencies": {
     "lodash": "^4.17.21"
   },
