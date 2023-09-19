@@ -1,5 +1,11 @@
-import { TestCase, TestFunction } from "./types";
 import { isEqual } from 'lodash';
+
+type TestFunction<T extends any[], R> = (...args: T) => R;
+
+type TestCase<T extends any[], R> = {
+    input: T;
+    expected: R;
+};
 
 /**
  * The `Laboratory` class provides a simple framework for running test cases
