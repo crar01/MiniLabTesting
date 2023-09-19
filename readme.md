@@ -1,6 +1,10 @@
 # Mini Lab Testing
 
-Welcome to Mini Lab Testing, a simple testing code base designed to help you quickly and easily test your code (Typescript | js). Whether developing a new project or maintaining an existing one, Mini Lab Testing provides a straightforward way to validate your functions and ensure their accuracy.
+Mini Lab Testing provides a simple and effective way to create and run tests without the need for testing frameworks. It is especially useful for tasks like code katas or quick tests of small functions. The clear test case structure and the ability to display detailed results make it easy to quickly identify whether a function meets expectations.
+
+Furthermore, by using TypeScript, you gain the advantage of type inference, which can help prevent type errors in both tests and the functions being tested.
+
+Mini Lab Testing is a useful tool for the development and debugging of functions, particularly when working on small projects or when you need to conduct quick and straightforward tests.
 
 ## Getting Started
 
