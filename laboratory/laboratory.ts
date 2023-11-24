@@ -25,6 +25,23 @@ export class Laboratory {
     }
 
     /**
+     * Skips a set of test cases and displays a message.
+     * 
+     * @param {TestFunction<T, R>} testFunction - The function to be tested.
+     * @param {Array<[T, R]>} testData - An array of input-output pairs for testing.
+     */
+    public static xxtest<T extends any[], R>(testFunction: TestFunction<T, R>, testData: Array<[T, R]>): void {
+        this.showDivider();
+        console.log('\x1b[90m', `❗Skipping test: ${testFunction.name}`, '\x1b[0m');
+    }
+
+    /**
+     * Skips a set of test cases and no message is displayed.
+     */ 
+    public static xtest<T extends any[], R>(testFunction: TestFunction<T, R>, testData: Array<[T, R]>): void {
+    }
+
+    /**
      * Transforms an array of input-output pairs into an array of test cases.
      *
      * @param {Array<[T, R]>} testData - The input-output pairs to be transformed.
@@ -45,7 +62,7 @@ export class Laboratory {
 
         let totalSuccess = 0;
 
-        this.showTitle(testFunction.name, totalSet);
+        this.showDivider();
 
         testCases.forEach((testCase, index) => {
             try {
@@ -56,7 +73,7 @@ export class Laboratory {
             }
         });
 
-        this.showResume(totalSet, totalSuccess);
+        this.showResume(testFunction.name, totalSet, totalSuccess);
     }
 
     /**
@@ -77,7 +94,7 @@ export class Laboratory {
         const isValueExpected = this.deepEqual(result, expected);
 
         if (isValueExpected) {
-            console.log(`✅ Case: ${numberCase} Passed`, result, '=', expected);
+            console.log(`✔️ Case: ${numberCase} Passed`, result, '=', expected);
         } else {
             console.log(`❌ Case: ${numberCase} Failed`, result, '!=', expected);
         }
@@ -91,9 +108,8 @@ export class Laboratory {
      * @param {string} functionName - The name of the function being tested.
      * @param {number} totalSet - The total number of test cases.
      */
-    private static showTitle<T extends any[], R>(functionName: string, totalSet: number) {
-        console.log(`\nTest for: ${functionName} | Total Cases:`, totalSet , '| Res <=> Exp');
-        console.log(''.padEnd(60, '—  '));
+    private static showDivider() {
+        console.log('\x1b[34m', ''.padEnd(60, '—'), '\x1b[0m');
     }
 
     /**
@@ -102,16 +118,20 @@ export class Laboratory {
      * @param {number} totalSet - The total number of test cases.
      * @param {number} totalSuccess - The number of test cases that passed.
      */
-    private static showResume(totalSet: number, totalSuccess: number): void {
+    private static showResume(functionName: string, totalSet: number, totalSuccess: number): void {
         console.log();
 
         if (totalSet === totalSuccess) {
-            console.log('😎 Great job...!!!');
+            console.log('\x1b[30m\x1b[102m', `PASS:`, '\x1b[0m', ` ${functionName}`,
+                `🟢 ${totalSuccess} passed`, 
+                `${totalSet} total`
+            );
         } else {
-            console.log(`😩 Try again...!!! ✅`, totalSuccess, '-', totalSet - totalSuccess, '❌');
+            console.log('\x1b[30m\x1b[101m', `FAIL:`, '\x1b[0m', ` ${functionName}`,
+                `❌ ${totalSet - totalSuccess} failed`,
+                `${totalSet} total` 
+            );
         }
-
-        console.log(''.padEnd(60, '—'));
     }
 
     /**
@@ -121,7 +141,7 @@ export class Laboratory {
      * @param {*} obj2 - The second value for comparison.
      * @returns {boolean} Returns `true` if the values are deeply equal, otherwise `false`.
      */
-    public static deepEqual(obj1: any, obj2: any): boolean {
+    private static deepEqual(obj1: any, obj2: any): boolean {
         return isEqual(obj1, obj2);
     }
 }
