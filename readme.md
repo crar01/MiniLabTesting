@@ -38,14 +38,12 @@ Mini Lab Testing is a useful tool for the development and debugging of functions
 4. Observe the test results in the console:
 
     ```
-    Test for: add | Total Cases: 3 | Res <=> Exp
-    —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
-    ✅ Case: 1 Passed 5 = 5
-    ✅ Case: 2 Passed 0 = 0
-    ✅ Case: 2 Passed 0 = 0
-
-    😎 Great job...!!!
     ————————————————————————————————————————————————————————————
+    ✔️ Case: 1 Passed 5 = 5
+    ✔️ Case: 2 Passed 0 = 0
+    ✔️ Case: 3 Passed 0 = 0
+
+    PASS:   add 🟢 3 passed 3 total
     ```
 
 5. You can see more examples in `examples/example1.ts`
