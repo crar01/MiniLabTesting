@@ -50,6 +50,12 @@ Mini Lab Testing is a useful tool for the development and debugging of functions
 
 5. You can see more examples in `examples/example1.ts`
 
+## Options
+
+`Laboratory.xtest` : Skips a set of test cases and no message is displayed.
+
+`Laboratory.xxtest` : Skips a set of test cases and displays a message.
+
 ## Running your tests
 
 1. Run `npm install` to install the dependencies.

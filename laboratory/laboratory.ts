@@ -12,6 +12,9 @@ type TestCase<T extends any[], R> = {
  * and displaying the results in a readable format.
  */
 export class Laboratory {
+    private static readonly successColorText = '\x1b[30m\x1b[102m';
+    private static readonly failureColorText = '\x1b[30m\x1b[101m';
+    private static readonly restartColorText = '\x1b[0m';
 
     /**
      * Runs a set of test cases using the specified test function and displays the results.
@@ -32,7 +35,7 @@ export class Laboratory {
      */
     public static xxtest<T extends any[], R>(testFunction: TestFunction<T, R>, testData: Array<[T, R]>): void {
         this.showDivider();
-        console.log('\x1b[90m', `❗Skipping test: ${testFunction.name}`, '\x1b[0m');
+        console.log('\x1b[90m', `❗Skipping test: ${testFunction.name}`, this.restartColorText);
     }
 
     /**
@@ -109,7 +112,7 @@ export class Laboratory {
      * @param {number} totalSet - The total number of test cases.
      */
     private static showDivider() {
-        console.log('\x1b[34m', ''.padEnd(60, '—'), '\x1b[0m');
+        console.log('\x1b[34m', ''.padEnd(60, '—'), this.restartColorText);
     }
 
     /**
@@ -122,12 +125,12 @@ export class Laboratory {
         console.log();
 
         if (totalSet === totalSuccess) {
-            console.log('\x1b[30m\x1b[102m', `PASS:`, '\x1b[0m', ` ${functionName}`,
+            console.log(this.successColorText, `PASS:`, this.restartColorText, ` ${functionName}`,
                 `🟢 ${totalSuccess} passed`, 
                 `${totalSet} total`
             );
         } else {
-            console.log('\x1b[30m\x1b[101m', `FAIL:`, '\x1b[0m', ` ${functionName}`,
+            console.log(this.failureColorText, `FAIL:`, this.restartColorText, ` ${functionName}`,
                 `❌ ${totalSet - totalSuccess} failed`,
                 `${totalSet} total` 
             );
